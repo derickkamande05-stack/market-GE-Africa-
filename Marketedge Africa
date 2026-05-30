@@ -1,0 +1,137 @@
+import "./globals.css";
+
+export const metadata = {
+  title: "MarketEdge Africa",
+  description: "Forex, Stocks & Trader Rankings for Africa",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className="bg-black text-white">{children}</body>
+    </html>
+  );
+}import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import News from "@/components/News";
+import Traders from "@/components/Traders";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <main>
+      <Navbar />
+      <Hero />
+      <News />
+      <Traders />
+      <Footer />
+    </main>
+  );
+}@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000;
+  color: white;
+}export default function Navbar() {
+  return (
+    <nav className="flex justify-between p-5 bg-zinc-900">
+      <h1 className="text-green-400 font-bold text-xl">
+        MarketEdge Africa
+      </h1>
+
+      <div className="flex gap-5 text-sm">
+        <a href="#">Home</a>
+        <a href="#">News</a>
+        <a href="#">Rankings</a>
+        <a href="#">Markets</a>
+      </div>
+    </nav>
+  );export default function Hero() {
+  return (
+    <section className="text-center py-20">
+      <h1 className="text-5xl font-bold">
+        Africa Trading Intelligence Hub
+      </h1>
+
+      <p className="text-gray-400 mt-4">
+        Forex • Stocks • Binary Insights • Trader Rankings
+      </p>
+
+      <button className="mt-6 bg-green-500 px-6 py-2 rounded">
+        Explore Market
+      </button>
+    </section>
+  );
+}const news = [
+  "USD strengthens against major currencies",
+  "African markets show steady growth",
+  "Gold prices rise due to global uncertainty",
+  "Forex traders react to inflation data",
+];
+
+export default function News() {
+  return (
+    <section className="p-6">
+      <h2 className="text-2xl font-bold mb-4">Market News</h2>
+
+      <div className="space-y-3">
+        {news.map((item, i) => (
+          <div key={i} className="bg-zinc-900 p-3 rounded">
+            {item}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+}const traders = [
+  { name: "Alpha Trader", country: "Kenya", win: "89%" },
+  { name: "Zulu FX", country: "South Africa", win: "85%" },
+  { name: "Naija Signals", country: "Nigeria", win: "82%" },
+];
+
+export default function Traders() {
+  return (
+    <section className="p-6">
+      <h2 className="text-2xl font-bold mb-4">
+        Top Traders of the Week
+      </h2>
+
+      <div className="grid gap-3">
+        {traders.map((t, i) => (
+          <div key={i} className="bg-zinc-900 p-4 rounded">
+            <h3 className="font-bold">{t.name}</h3>
+            <p>{t.country}</p>
+            <p className="text-green-400">Win Rate: {t.win}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}export default function Footer() {
+  return (
+    <footer className="text-center p-6 bg-zinc-950 mt-10">
+      <p>© 2026 MarketEdge Africa. All rights reserved.</p>
+    </footer>
+  );
+}module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = nextConfig;
